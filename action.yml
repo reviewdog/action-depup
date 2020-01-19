@@ -1,0 +1,23 @@
+name: 'Bump version in code to latest semantic ver release'
+description: 'Bump version in code to latest semantic ver release. (e.g. REVIEWDOG=0.9.17 in Dockerfile)'
+author: 'haya14busa'
+inputs:
+  github_token:
+    description: 'GITHUB_TOKEN to get latest version with GitHub Release API'
+    default: '${{ github.token }}'
+  file:
+    description: 'target file'
+    required: true
+  version_name:
+    description: 'target version name. e.g. REVIEWDOG_VERSION'
+    required: true
+  repo:
+    description: 'target GitHub repository. e.g. reviewdog/reviewdog'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+# Ref: https://haya14busa.github.io/github-action-brandings/
+branding:
+  icon: 'refresh-cw'
+  color: 'orange'
