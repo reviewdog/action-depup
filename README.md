@@ -3,6 +3,29 @@
 [![Test](https://github.com/haya14busa/action-depup/workflows/Test/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3ATest)
 [![reviewdog](https://github.com/haya14busa/action-depup/workflows/reviewdog/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Areviewdog)
 
+depup action updates version in a given file automatically.
+
+**Supported patterns example:**
+
+```
+REVIEWDOG_VERSION=0.1.0
+# v prefix is supported as well.
+REVIEWDOG_VERSION=v0.1.0
+```
+
+```Dockerfile
+# Dockerfile sample
+ENV REVIEWDOG_VERSION=0.1.0
+ENV REVIEWDOG_VERSION 0.1.0 # space is ok.
+ARG REVIEWDOG_VERSION=0.1.0
+```
+
+```yaml
+# yaml sample
+yaml:
+  REVIEWDOG_VERSION: 0.1.0
+```
+
 ## Inputs
 
 ```yaml
