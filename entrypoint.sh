@@ -18,16 +18,17 @@ fi
 echo "Current ${VERSION_NAME}=${CURRENT_VERSION}"
 
 # Get latest semantic version release tag name from GitHub Release API.
-GITHUB_AUTH_HEADER=()
-if [ -n "${INPUT_GITHUB_TOKEN}" ]; then
-  GITHUB_AUTH_HEADER=(-H "Authorization: token ${INPUT_GITHUB_TOKEN}")
-  echo "Use INPUT_GITHUB_TOKEN to get release data."
-else
-  echo "INPUT_GITHUB_TOKEN is not available. Subscequent GitHub API call can fail due to API limit."
-fi
-
+list_releases() {
+  if [ -n "${INPUT_GITHUB_TOKEN}" ]; then
+    echo "Use INPUT_GITHUB_TOKEN to get release data." >&2
+    curl -s -H "Authorization: token ${INPUT_GITHUB_TOKEN}" "https://api.github.com/repos/${REPO}/releases"
+  else
+    echo "INPUT_GITHUB_TOKEN is not available. Subscequent GitHub API call can fail due to API limit." >&2
+    curl -s "https://api.github.com/repos/${REPO}/releases"
+  fi
+}
 LATEST_VERSION=$(\
-  curl -s ${GITHUB_AUTH_HEADER[@]} "https://api.github.com/repos/${REPO}/releases" | \
+  list_releases | \
   jq -r '.[] | .tag_name' | \
   sed 's/^v//' | \
   grep -P '\d+\.\d+\.\d+' | \
