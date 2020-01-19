@@ -2,7 +2,9 @@ name: autobump
 on:
   schedule:
     - cron:  '*/15 * * * *'
-  pull_request: # for testing
+  push: # for testing
+    branches:
+      - '**'
 
 jobs:
   autobump:
