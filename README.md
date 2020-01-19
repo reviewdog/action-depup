@@ -18,7 +18,8 @@ REVIEWDOG_VERSION=v0.1.0
 ```Dockerfile
 # Dockerfile sample
 ENV REVIEWDOG_VERSION=0.1.0
-ENV REVIEWDOG_VERSION 0.1.0 # space is ok.
+# space is supported as well.
+ENV REVIEWDOG_VERSION 0.1.0
 ARG REVIEWDOG_VERSION=0.1.0
 ```
 
