@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-if [ ! -z "${GITHUB_WORKSPACE}" ]; then
+if [ -n "${GITHUB_WORKSPACE}" ]; then
   cd "${GITHUB_WORKSPACE}" || exit
 fi
 
@@ -18,16 +18,16 @@ fi
 echo "Current ${VERSION_NAME}=${CURRENT_VERSION}"
 
 # Get latest semantic version release tag name from GitHub Release API.
-GITHUB_AUTH_HEADER=""
-if [ ! -z "${INPUT_GITHUB_TOKEN}" ]; then
-  GITHUB_AUTH_HEADER="-H \"Authorization: token ${INPUT_GITHUB_TOKEN}\""
+GITHUB_AUTH_HEADER=()
+if [ -n "${INPUT_GITHUB_TOKEN}" ]; then
+  GITHUB_AUTH_HEADER=(-H "Authorization: token ${INPUT_GITHUB_TOKEN}")
   echo "Use INPUT_GITHUB_TOKEN to get release data."
 else
   echo "INPUT_GITHUB_TOKEN is not available. Subscequent GitHub API call can fail due to API limit."
 fi
 
 LATEST_VERSION=$(\
-  curl -s ${GITHUB_AUTH_HEADER} https://api.github.com/repos/${REPO}/releases | \
+  curl -s ${GITHUB_AUTH_HEADER[@]} "https://api.github.com/repos/${REPO}/releases" | \
   jq -r '.[] | .tag_name' | \
   sed 's/^v//' | \
   grep -P '\d+\.\d+\.\d+' | \
