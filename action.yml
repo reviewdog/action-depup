@@ -1,5 +1,5 @@
-name: 'Bump version in code to latest semantic ver release'
-description: 'Bump version in code to latest semantic ver release. (e.g. REVIEWDOG=0.9.17 in Dockerfile)'
+name: 'Updates dependencies automatically'
+description: 'Updates dependencies in code to latest semantic ver release. (e.g. REVIEWDOG=0.9.17 in Dockerfile)'
 author: 'haya14busa'
 inputs:
   github_token:
