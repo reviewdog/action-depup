@@ -1,6 +1,6 @@
 This is test file.
 
-REVIEWDOG_VERSION=0.1.0
+REVIEWDOG_VERSION=0.9.17
 
 The above version should be updated to the latest version with this action.
 
