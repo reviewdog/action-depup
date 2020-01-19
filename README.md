@@ -1,5 +1,8 @@
 # depup - Action which updates dependencies automatically
 
+[![Test](https://github.com/haya14busa/action-depup/workflows/Test/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3ATest)
+[![reviewdog](https://github.com/haya14busa/action-depup/workflows/reviewdog/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Areviewdog)
+
 ## Inputs
 
 ```yaml
