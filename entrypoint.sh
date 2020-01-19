@@ -10,7 +10,7 @@ REPO="${INPUT_REPO:-reviewdog/reviewdog}"
 VERSION_NAME="${INPUT_VERSION_NAME:-REVIEWDOG_VERSION}"
 
 # Get current version.
-CURRENT_VERSION=$(grep -oP "${VERSION_NAME}=\K\d+\.\d+\.\d+" "${FILE}")
+CURRENT_VERSION=$(grep -oP "${VERSION_NAME}(=|:?\s+)\v?\K\d+\.\d+\.\d+" "${FILE}" | head -n1)
 if [ -z "${CURRENT_VERSION}" ]; then
   echo "cannot parse ${VERSION_NAME}"
   exit 1
@@ -47,7 +47,7 @@ if [ "${CURRENT_VERSION}" = "${LATEST_VERSION}" ]; then
 fi
 
 echo "Updating ${VERSION_NAME} to ${LATEST_VERSION} in ${FILE}"
-sed -i "s/\(${VERSION_NAME}=\)\([0-9]\+\.[0-9]\+\.\?[0-9]\+\)/\1${LATEST_VERSION}/" "${FILE}"
+sed -i "s/\(${VERSION_NAME}\(=\|:\?\s\+\)v\?\)\([0-9]\+\.[0-9]\+\.\?[0-9]\+\)/\1${LATEST_VERSION}/" "${FILE}"
 
 echo "Updated. Commit and create Pull-Request as you need."
 echo "::set-output name=current::${CURRENT_VERSION}"
