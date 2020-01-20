@@ -10,7 +10,7 @@ REPO="${INPUT_REPO:-reviewdog/reviewdog}"
 VERSION_NAME="${INPUT_VERSION_NAME:-REVIEWDOG_VERSION}"
 
 # Get current version.
-CURRENT_VERSION=$(grep -oP "${VERSION_NAME}(=|:?\s+)\v?\K\d+\.\d+\.\d+" "${FILE}" | head -n1)
+CURRENT_VERSION=$(grep -oP "${VERSION_NAME}(=|:?\s+)v?\K\d+\.\d+\.\d+" "${FILE}" | head -n1)
 if [ -z "${CURRENT_VERSION}" ]; then
   echo "cannot parse ${VERSION_NAME}"
   exit 1
