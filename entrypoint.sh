@@ -30,8 +30,8 @@ list_releases() {
 LATEST_VERSION=$(\
   list_releases | \
   jq -r '.[] | .tag_name' | \
-  sed 's/^v//' | \
-  grep -P '\d+\.\d+\.\d+' | \
+  :"Exclude v prefix and pre-release" \
+  grep -oP '\d+\.\d+\.\d+$' | \
   sort --version-sort --reverse | \
   head -n1
 )
