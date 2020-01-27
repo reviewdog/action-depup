@@ -2,6 +2,9 @@
 
 [![Test](https://github.com/haya14busa/action-depup/workflows/Test/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3ATest)
 [![reviewdog](https://github.com/haya14busa/action-depup/workflows/reviewdog/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Areviewdog)
+[![depup](https://github.com/haya14busa/action-depup/workflows/depup/badge.svg?branch=master&event=push)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Adepup+event%3Apush+branch%3Amaster)
+[![release](https://github.com/haya14busa/action-depup/workflows/release/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/haya14busa/action-depup?logo=github&sort=semver)](https://github.com/haya14busa/action-depup/releases)
 
 depup action updates version in a given file automatically.
 
