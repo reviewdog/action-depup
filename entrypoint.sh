@@ -20,7 +20,6 @@ echo "Current ${VERSION_NAME}=${CURRENT_VERSION}"
 # Get latest semantic version release tag name from GitHub Release API.
 list_releases() {
   if [ -n "${INPUT_GITHUB_TOKEN}" ]; then
-    echo "Use INPUT_GITHUB_TOKEN to get release data." >&2
     curl -s -H "Authorization: token ${INPUT_GITHUB_TOKEN}" "https://api.github.com/repos/${REPO}/releases"
   else
     echo "INPUT_GITHUB_TOKEN is not available. Subscequent GitHub API call can fail due to API limit." >&2
