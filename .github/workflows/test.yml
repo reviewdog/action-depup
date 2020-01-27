@@ -18,3 +18,17 @@ jobs:
 
       - name: Check diff
         run: git diff
+
+  needless_prefix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: REDPEN_VERSION
+          repo: redpen-cc/redpen
+
+      - name: Check diff
+        run: git diff
