@@ -5,6 +5,7 @@
 [![depup](https://github.com/haya14busa/action-depup/workflows/depup/badge.svg?branch=master&event=push)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Adepup+event%3Apush+branch%3Amaster)
 [![release](https://github.com/haya14busa/action-depup/workflows/release/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Arelease)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/haya14busa/action-depup?logo=github&sort=semver)](https://github.com/haya14busa/action-depup/releases)
+[![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
 depup action updates version in a given file automatically.
 
