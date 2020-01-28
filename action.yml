@@ -1,5 +1,5 @@
 name: 'Updates dependencies automatically'
-description: 'Updates dependencies in code to latest semantic ver release. (e.g. REVIEWDOG=0.9.17 in Dockerfile)'
+description: 'Updates dependencies in code to latest semantic ver release. (e.g. TOOL_NAME_VERSION=0.9.17 in Dockerfile)'
 author: 'haya14busa'
 inputs:
   github_token:
