@@ -14,3 +14,5 @@ The above version should be updated to the latest version with this action.
 Other test cases.
 
 REDPEN_VERSION=1.10.1
+
+TMUX_VERSION=3.0
