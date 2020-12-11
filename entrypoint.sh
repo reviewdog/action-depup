@@ -29,7 +29,7 @@ list_releases() {
 LATEST_VERSION=$(\
   list_releases | \
   jq -r '.[] | .tag_name' | \
-  grep -oP '\d+\.\d+(\.\d+)?$' | \
+  grep -oP '\d+\.\d+(\.\d+)?(-[^\"\s]*)?$' | \
   sort --version-sort --reverse | \
   head -n1
 )
