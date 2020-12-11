@@ -50,3 +50,4 @@ perl -i -pe "s/${VERSION_NAME}(?:\s?=\s?|:?\s+)\"?v?\K\d+\.\d+(\.\d+)?(-[^\"\s]*
 echo "Updated. Commit and create Pull-Request as you need."
 echo "::set-output name=current::${CURRENT_VERSION}"
 echo "::set-output name=latest::${LATEST_VERSION}"
+echo "::set-output name=repo::${REPO}"
