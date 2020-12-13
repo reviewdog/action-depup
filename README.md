@@ -1,15 +1,15 @@
 # depup - Action which updates dependencies automatically
 
-[![Test](https://github.com/haya14busa/action-depup/workflows/Test/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3ATest)
-[![reviewdog](https://github.com/haya14busa/action-depup/workflows/reviewdog/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Areviewdog)
-[![depup](https://github.com/haya14busa/action-depup/workflows/depup/badge.svg?branch=master&event=push)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Adepup+event%3Apush+branch%3Amaster)
-[![release](https://github.com/haya14busa/action-depup/workflows/release/badge.svg)](https://github.com/haya14busa/action-depup/actions?query=workflow%3Arelease)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/haya14busa/action-depup?logo=github&sort=semver)](https://github.com/haya14busa/action-depup/releases)
+[![Test](https://github.com/reviewdog/action-depup/workflows/Test/badge.svg)](https://github.com/reviewdog/action-depup/actions?query=workflow%3ATest)
+[![reviewdog](https://github.com/reviewdog/action-depup/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-depup/actions?query=workflow%3Areviewdog)
+[![depup](https://github.com/reviewdog/action-depup/workflows/depup/badge.svg?branch=master&event=push)](https://github.com/reviewdog/action-depup/actions?query=workflow%3Adepup+event%3Apush+branch%3Amaster)
+[![release](https://github.com/reviewdog/action-depup/workflows/release/badge.svg)](https://github.com/reviewdog/action-depup/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-depup?logo=github&sort=semver)](https://github.com/reviewdog/action-depup/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
 depup action updates version in a given file automatically.
 
-[![demo](https://user-images.githubusercontent.com/3797062/72677595-7ac4ec80-3ae1-11ea-8b49-163bb72f822c.png)](https://github.com/haya14busa/action-depup/pull/4)
+[![demo](https://user-images.githubusercontent.com/3797062/72677595-7ac4ec80-3ae1-11ea-8b49-163bb72f822c.png)](https://github.com/reviewdog/action-depup/pull/4)
 
 **Supported patterns example:**
 
@@ -33,7 +33,7 @@ yaml:
   REVIEWDOG_VERSION: 0.1.0
 ```
 
-demo: https://github.com/haya14busa/action-depup/pull/4
+demo: https://github.com/reviewdog/action-depup/pull/4
 
 ## Inputs
 
@@ -69,7 +69,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: haya14busa/action-depup@v1
+      - uses: reviewdog/action-depup@v1
         id: depup
         with:
           file: testdata/testfile
