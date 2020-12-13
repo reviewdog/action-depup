@@ -5,12 +5,13 @@ if [ -n "${GITHUB_WORKSPACE}" ]; then
   cd "${GITHUB_WORKSPACE}" || exit
 fi
 
-FILE="${INPUT_FILE:-Dockerfile}"
+FILE="${INPUT_FILE:-testdata/testfile}"
 REPO="${INPUT_REPO:-reviewdog/reviewdog}"
 VERSION_NAME="${INPUT_VERSION_NAME:-REVIEWDOG_VERSION}"
 
 # Get current version.
-CURRENT_VERSION=$(grep -oP "${VERSION_NAME}\s*(=|:?)\s*(\'|\")?v?\K\d+\.\d+(\.\d+)?" "${FILE}" | head -n1)
+# NOTE: Go to https://regex101.com/r/t1JcmL/13 To see the current regex in action.
+CURRENT_VERSION=$(grep -oP "${VERSION_NAME}(?:\s*=\s*|:?\s*)[\"|\']?v?\K\d+\.\d+(\.\d+)?(-[^\'\"\s]*)?" "${FILE}" | head -n1)
 if [ -z "${CURRENT_VERSION}" ]; then
   echo "cannot parse ${VERSION_NAME}"
   exit 1
@@ -26,13 +27,13 @@ list_releases() {
     curl -s "https://api.github.com/repos/${REPO}/releases"
   fi
 }
-LATEST_VERSION=$(\
+LATEST_VERSION="$(\
   list_releases | \
   jq -r '.[] | .tag_name' | \
-  grep -oP '\d+\.\d+(\.\d+)?$' | \
+  grep -oP '\d+\.\d+(\.\d+)?(-[^'\''\"\s]*)?$' | \
   sort --version-sort --reverse | \
-  head -n1
-)
+  head -n1 \
+)"
 if [ -z "${LATEST_VERSION}" ]; then
   echo "cannot get latest ${REPO} version"
   exit 1
@@ -45,8 +46,9 @@ if [ "${CURRENT_VERSION}" = "${LATEST_VERSION}" ]; then
 fi
 
 echo "Updating ${VERSION_NAME} to ${LATEST_VERSION} in ${FILE}"
-sed -i "s/\(${VERSION_NAME}\s*\(=\|:\?\)\s*\('\|\"\)\?v\?\)\([0-9]\+\.[0-9]\+\(\.\?[0-9]\+\)\?\)/\1${LATEST_VERSION}/" "${FILE}"
+perl -i -pe "s/${VERSION_NAME}(?:\s*=\s*|:?\s*)[\"|\']?v?\K\d+\.\d+(\.\d+)?(-[^\'\"\s]*)?/${LATEST_VERSION}/g" "${FILE}"
 
 echo "Updated. Commit and create Pull-Request as you need."
 echo "::set-output name=current::${CURRENT_VERSION}"
 echo "::set-output name=latest::${LATEST_VERSION}"
+echo "::set-output name=repo::${REPO}"
