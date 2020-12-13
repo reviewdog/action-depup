@@ -4,6 +4,7 @@ on:
     branches:
       - master
   pull_request:
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -43,6 +44,20 @@ jobs:
           file: testdata/testfile
           version_name: TMUX_VERSION
           repo: tmux/tmux
+
+      - name: Check diff
+        run: git diff
+
+  quoted_version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: POETRY_VERSION
+          repo: python-poetry/poetry
 
       - name: Check diff
         run: git diff
