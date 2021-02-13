@@ -2,7 +2,7 @@ name: depup
 on:
   schedule:
     - cron:  '14 14 * * *'
-　workflow_dispatch:
+  workflow_dispatch:
   push: # for testing
     branches:
       - '**'
