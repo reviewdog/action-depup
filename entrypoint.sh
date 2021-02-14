@@ -27,13 +27,27 @@ list_releases() {
     curl -s "https://api.github.com/repos/${REPO}/releases"
   fi
 }
-LATEST_VERSION="$(\
-  list_releases | \
-  jq -r '.[] | .tag_name' | \
-  grep -oP '\d+\.\d+(\.\d+)?(-[^'\''\"\s]*)?$' | \
-  sort --version-sort --reverse | \
-  head -n1 \
-)"
+
+LATEST_VERSION="${CURRENT_VERSION}"
+if [ "${INPUT_TAG:-false}" = "true" ]; then
+  echo "Check remote tag instead of release" >&2
+  LATEST_VERSION="$(\
+    git ls-remote -q --tags "https://github.com/${REPO}.git" | \
+    awk '{ print $2 }' | \
+    grep -oP '\d+\.\d+(\.\d+)*(-[^'\''\"\s]*)?$' | \
+    sort --version-sort --reverse | \
+    head -n1 \
+    )"
+else
+  LATEST_VERSION="$(\
+    list_releases | \
+    jq -r '.[] | .tag_name' | \
+    grep -oP '\d+\.\d+(\.\d+)*(-[^'\''\"\s]*)?$' | \
+    sort --version-sort --reverse | \
+    head -n1 \
+    )"
+fi
+
 if [ -z "${LATEST_VERSION}" ]; then
   echo "cannot get latest ${REPO} version"
   exit 1
