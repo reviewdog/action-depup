@@ -39,7 +39,7 @@ list_versions() {
 
 LATEST_VERSION="$(\
   list_versions | \
-  grep -oP '\d+\.\d+(\.\d+)*(-[^'\''\"\s]*)?$' | \
+  grep -oP '\d+(\.\d+)+(-[^'\''\"\s]*)?$'| \
   sort --version-sort --reverse | \
   head -n1 \
   )"
