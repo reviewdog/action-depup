@@ -27,13 +27,23 @@ list_releases() {
     curl -s "https://api.github.com/repos/${REPO}/releases"
   fi
 }
+
+# Return version list from tags(refs/tags/vA.B.C and vA.B.C^{}) or releases
+list_versions() {
+  if [ "${INPUT_TAG:-false}" = "true" ]; then
+    git ls-remote -q --tags "https://github.com/${REPO}.git" | awk '{ print $2 }'
+  else
+    list_releases |  jq -r '.[] | .tag_name'
+  fi
+}
+
 LATEST_VERSION="$(\
-  list_releases | \
-  jq -r '.[] | .tag_name' | \
-  grep -oP '\d+\.\d+(\.\d+)?(-[^'\''\"\s]*)?$' | \
+  list_versions | \
+  grep -oP '\d+(\.\d+)+(-[^'\''\"\s]*)?$'| \
   sort --version-sort --reverse | \
   head -n1 \
-)"
+  )"
+
 if [ -z "${LATEST_VERSION}" ]; then
   echo "cannot get latest ${REPO} version"
   exit 1

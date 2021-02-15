@@ -61,3 +61,18 @@ jobs:
 
       - name: Check diff
         run: git diff
+
+  tagged_version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: THEMIS_VERSION
+          repo: thinca/vim-themis
+          tag: true
+
+      - name: Check diff
+        run: git diff

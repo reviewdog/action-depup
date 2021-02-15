@@ -51,6 +51,10 @@ inputs:
   repo:
     description: 'target GitHub repository. e.g. reviewdog/reviewdog'
     required: true
+  tag:
+    description: 'Check tags instead of releases.'
+    default: 'false'
+    required: false
 ```
 
 ## Example usage
