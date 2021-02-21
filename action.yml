@@ -18,6 +18,13 @@ inputs:
     description: 'Check tags instead of releases.'
     default: 'false'
     required: false
+outputs:
+  current:
+    description: 'current version'
+  latest:
+    description: 'latest version'
+  repo:
+    description: 'target GitHub repository. Same as the repo from input.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
