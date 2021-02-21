@@ -50,6 +50,11 @@ if [ -z "${LATEST_VERSION}" ]; then
 fi
 echo "Latest ${VERSION_NAME}=${LATEST_VERSION}"
 
+# Set outputs.
+echo "::set-output name=current::${CURRENT_VERSION}"
+echo "::set-output name=latest::${LATEST_VERSION}"
+echo "::set-output name=repo::${REPO}"
+
 if [ "${CURRENT_VERSION}" = "${LATEST_VERSION}" ]; then
   echo "${VERSION_NAME} is latest. Nothing to do."
   exit 0
@@ -59,6 +64,3 @@ echo "Updating ${VERSION_NAME} to ${LATEST_VERSION} in ${FILE}"
 perl -i -pe "s/${VERSION_NAME}(?:\s*=\s*|:?\s*)[\"|\']?v?\K\d+\.\d+(\.\d+)?(-[^\'\"\s]*)?/${LATEST_VERSION}/g" "${FILE}"
 
 echo "Updated. Commit and create Pull-Request as you need."
-echo "::set-output name=current::${CURRENT_VERSION}"
-echo "::set-output name=latest::${LATEST_VERSION}"
-echo "::set-output name=repo::${REPO}"
