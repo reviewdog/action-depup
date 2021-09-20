@@ -38,7 +38,7 @@ runs:
   steps:
     - name: reviewdog/action-depup
       id: depup
-      uses: ./
+      uses: $GITHUB_ACTION_PATH/..
       with:
         github_token: ${{ inputs.github_token }}
         file: ${{ inputs.file }}
