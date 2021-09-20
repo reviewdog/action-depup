@@ -36,9 +36,8 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: reviewdog/action-depup
+    - uses: reviewdog/action-depup@v1
       id: depup
-      uses: ./
       with:
         github_token: ${{ inputs.github_token }}
         file: ${{ inputs.file }}
