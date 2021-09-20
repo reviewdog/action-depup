@@ -17,6 +17,7 @@ jobs:
           file: testdata/testfile
           version_name: REVIEWDOG_VERSION
           repo: reviewdog/reviewdog
+          labels: demo
 
   redpen:
     runs-on: ubuntu-latest
@@ -28,6 +29,7 @@ jobs:
           version_name: REDPEN_VERSION
           repo: redpen-cc/redpen
           tag_prefix: redpen-
+          labels: demo
 
   themis:
     runs-on: ubuntu-latest
@@ -40,3 +42,4 @@ jobs:
           version_name: THEMIS_VERSION
           repo: thinca/vim-themis
           tag: true
+          labels: demo
