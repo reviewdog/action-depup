@@ -11,7 +11,7 @@ jobs:
   reviewdog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./with-pr
         with:
           file: testdata/testfile
@@ -22,7 +22,7 @@ jobs:
   redpen:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./with-pr
         with:
           file: testdata/testfile
@@ -34,7 +34,7 @@ jobs:
   themis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./with-pr
         id: depup
         with:
