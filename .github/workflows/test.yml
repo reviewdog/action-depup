@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         id: depup
         with:
@@ -23,7 +23,7 @@ jobs:
   needless_prefix:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         id: depup
         with:
@@ -37,7 +37,7 @@ jobs:
   not_semver:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         id: depup
         with:
@@ -51,7 +51,7 @@ jobs:
   quoted_version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         id: depup
         with:
@@ -65,7 +65,7 @@ jobs:
   tagged_version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         id: depup
         with:
