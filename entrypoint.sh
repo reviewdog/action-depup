@@ -37,6 +37,16 @@ list_versions() {
   fi
 }
 
+set_output() {
+  name=$1
+  value=$2
+  if [ -n "${GITHUB_OUTPUT}" ]; then
+    echo "$name=$value" >> "{$GITHUB_OUTPUT}"
+  else
+    echo "::set-output name=$name::$value"
+  fi
+}
+
 LATEST_VERSION="$(\
   list_versions | \
   grep -oP '\d+(\.\d+)+(-[^'\''\"\s]*)?$'| \
@@ -51,9 +61,9 @@ fi
 echo "Latest ${VERSION_NAME}=${LATEST_VERSION}"
 
 # Set outputs.
-echo "::set-output name=current::${CURRENT_VERSION}"
-echo "::set-output name=latest::${LATEST_VERSION}"
-echo "::set-output name=repo::${REPO}"
+set_output current "${CURRENT_VERSION}"
+set_output latest "${LATEST_VERSION}"
+set_output repo "${REPO}"
 
 if [ "${CURRENT_VERSION}" = "${LATEST_VERSION}" ]; then
   echo "${VERSION_NAME} is latest. Nothing to do."
