@@ -61,9 +61,9 @@ fi
 echo "Latest ${VERSION_NAME}=${LATEST_VERSION}"
 
 # Set outputs.
-set_output current "${CURRENT_VERSION}"
-set_output latest "${LATEST_VERSION}"
-set_output repo "${REPO}"
+set_output "current" "${CURRENT_VERSION}"
+set_output "latest" "${LATEST_VERSION}"
+set_output "repo" "${REPO}"
 
 if [ "${CURRENT_VERSION}" = "${LATEST_VERSION}" ]; then
   echo "${VERSION_NAME} is latest. Nothing to do."
