@@ -3,7 +3,7 @@ description: 'Updates dependencies in code to latest semantic ver release. (e.g.
 author: 'haya14busa'
 inputs:
   github_token:
-    description: 'GITHUB_TOKEN to get latest version with GitHub Release API'
+    description: 'GITHUB_TOKEN to get latest version with GitHub Release API and create the PR'
     default: '${{ github.token }}'
   file:
     description: 'target file'
