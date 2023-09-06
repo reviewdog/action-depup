@@ -40,20 +40,20 @@ demo: https://github.com/reviewdog/action-depup/pull/4
 ```yaml
 inputs:
   github_token:
-    description: 'GITHUB_TOKEN to get latest version with GitHub Release API'
-    default: '${{ github.token }}'
+    description: "GITHUB_TOKEN to get latest version with GitHub Release API"
+    default: "${{ github.token }}"
   file:
-    description: 'target file'
+    description: "target file"
     required: true
   version_name:
-    description: 'target version name. e.g. REVIEWDOG_VERSION'
+    description: "target version name. e.g. REVIEWDOG_VERSION"
     required: true
   repo:
-    description: 'target GitHub repository. e.g. reviewdog/reviewdog'
+    description: "target GitHub repository. e.g. reviewdog/reviewdog"
     required: true
   tag:
-    description: 'Check tags instead of releases.'
-    default: 'false'
+    description: "Check tags instead of releases."
+    default: "false"
     required: false
 ```
 
@@ -65,14 +65,14 @@ inputs:
 name: depup
 on:
   schedule:
-    - cron:  '14 14 * * *'
+    - cron: "14 14 * * *"
   workflow_dispatch:
 
 jobs:
   reviewdog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: reviewdog/action-depup@v1
         id: depup
@@ -102,14 +102,14 @@ If you want to create a PR after, you can use `reviewdog/action-depup/with-pr@v1
 name: depup
 on:
   schedule:
-    - cron:  '14 14 * * *'
+    - cron: "14 14 * * *"
   workflow_dispatch:
 
 jobs:
   reviewdog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: reviewdog/action-depup/with-pr@v1
         with:
           file: testdata/testfile
