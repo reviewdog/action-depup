@@ -37,6 +37,23 @@ list_versions() {
   fi
 }
 
+# Filter given version list using given include/exclude regular expressions.
+filter_versions() {
+    list=$(cat)
+
+    if [ -n "${INPUT_INCLUDE}" ]; then
+        echo "include pattern: ${INPUT_INCLUDE}" >&2
+        list="$(echo "${list}" | grep -P -- "${INPUT_INCLUDE}")"
+    fi
+
+    if [ -n "${INPUT_EXCLUDE}" ]; then
+        echo "exclude pattern: ${INPUT_EXCLUDE}" >&2
+        list="$(echo "${list}" | grep -vP -- "${INPUT_EXCLUDE}")"
+    fi
+
+    echo "${list}"
+}
+
 set_output() {
   name=$1
   value=$2
@@ -50,6 +67,7 @@ set_output() {
 LATEST_VERSION="$(\
   list_versions | \
   grep -oP '\d+(\.\d+)+(-[^'\''\"\s]*)?$'| \
+  filter_versions | \
   sort --version-sort --reverse | \
   head -n1 \
   )"

@@ -76,3 +76,33 @@ jobs:
 
       - name: Check diff
         run: git diff
+
+  include:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: TERRAFORM_VERSION
+          repo: hashicorp/terraform
+          include: '^\d+\.\d+\.\d+$'
+
+      - name: Check diff
+        run: git diff
+
+  exclude:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: TERRAFORM_VERSION
+          repo: hashicorp/terraform
+          exclude: '-(alpha|beta|rc)'
+
+      - name: Check diff
+        run: git diff

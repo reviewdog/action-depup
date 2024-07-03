@@ -18,6 +18,12 @@ inputs:
     description: 'Check tags instead of releases.'
     default: 'false'
     required: false
+  include:
+    description: 'Regular expression to use only matched versions.'
+    required: false
+  exclude:
+    description: 'Regular expression not to use matched versions.'
+    required: false
   tag_prefix:
     description: 'Tag prefix used for building link in PR description'
     default: 'v'
@@ -28,13 +34,13 @@ inputs:
 outputs:
   current:
     description: 'current version'
-    value: ${{ steps.depup.outputs.current }}	
+    value: ${{ steps.depup.outputs.current }}
   latest:
     description: 'latest version'
-    value: ${{ steps.depup.outputs.latest }}	
+    value: ${{ steps.depup.outputs.latest }}
   repo:
     description: 'target GitHub repository. Same as the repo from input.'
-    value: ${{ steps.depup.outputs.repo }}	
+    value: ${{ steps.depup.outputs.repo }}
 
 runs:
   using: 'composite'
@@ -46,6 +52,8 @@ runs:
         file: ${{ inputs.file }}
         version_name: ${{ inputs.version_name }}
         repo: ${{ inputs.repo }}
+        include: ${{ inputs.include }}
+        exclude: ${{ inputs.exclude }}
         tag: ${{ inputs.tag }}
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6

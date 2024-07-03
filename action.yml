@@ -18,6 +18,12 @@ inputs:
     description: 'Check tags instead of releases.'
     default: 'false'
     required: false
+  include:
+    description: 'Regular expression to use only matched versions.'
+    required: false
+  exclude:
+    description: 'Regular expression not to use matched versions.'
+    required: false
 outputs:
   current:
     description: 'current version'
