@@ -43,3 +43,19 @@ jobs:
           repo: thinca/vim-themis
           tag: true
           labels: demo
+
+  include:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./with-pr
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: TERRAFORM_VERSION
+          repo: hashicorp/terraform
+          include: '^\d+\.\d+\.\d+$'
+          labels: demo
+
+      - name: Check diff
+        run: git diff
