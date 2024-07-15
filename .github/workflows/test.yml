@@ -16,7 +16,6 @@ jobs:
           file: testdata/testfile
           version_name: REVIEWDOG_VERSION
           repo: reviewdog/reviewdog
-
       - name: Check diff
         run: git diff
 
@@ -30,7 +29,6 @@ jobs:
           file: testdata/testfile
           version_name: REDPEN_VERSION
           repo: redpen-cc/redpen
-
       - name: Check diff
         run: git diff
 
@@ -44,7 +42,6 @@ jobs:
           file: testdata/testfile
           version_name: TMUX_VERSION
           repo: tmux/tmux
-
       - name: Check diff
         run: git diff
 
@@ -58,7 +55,6 @@ jobs:
           file: testdata/testfile
           version_name: POETRY_VERSION
           repo: python-poetry/poetry
-
       - name: Check diff
         run: git diff
 
@@ -73,7 +69,6 @@ jobs:
           version_name: THEMIS_VERSION
           repo: thinca/vim-themis
           tag: true
-
       - name: Check diff
         run: git diff
 
@@ -88,7 +83,6 @@ jobs:
           version_name: TERRAFORM_VERSION
           repo: hashicorp/terraform
           include: '^\d+\.\d+\.\d+$'
-
       - name: Check diff
         run: git diff
 
@@ -103,6 +97,32 @@ jobs:
           version_name: TERRAFORM_VERSION
           repo: hashicorp/terraform
           exclude: '-(alpha|beta|rc)'
+      - name: Check diff
+        run: git diff
 
+  exclude-default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: TERRAFORM_VERSION
+          repo: hashicorp/terraform
+      - name: Check diff
+        run: git diff
+
+  exclude-remove:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: depup
+        with:
+          file: testdata/testfile
+          version_name: TERRAFORM_VERSION
+          repo: hashicorp/terraform
+          exclude: '' # empty
       - name: Check diff
         run: git diff
