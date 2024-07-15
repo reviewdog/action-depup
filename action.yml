@@ -23,6 +23,7 @@ inputs:
     required: false
   exclude:
     description: 'Regular expression not to use matched versions.'
+    default: '\b(rc|alpha|beta)(\b|\d+)'
     required: false
 outputs:
   current:
