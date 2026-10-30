@@ -46,7 +46,7 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - uses: reviewdog/action-depup@v1.6.2
+    - uses: reviewdog/action-depup@v1.6.5
       id: depup
       with:
         github_token: ${{ inputs.github_token }}
