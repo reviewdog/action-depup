@@ -9,8 +9,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -22,8 +22,8 @@ jobs:
   needless_prefix:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -35,8 +35,8 @@ jobs:
   not_semver:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -48,8 +48,8 @@ jobs:
   quoted_version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -61,8 +61,8 @@ jobs:
   tagged_version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -75,8 +75,8 @@ jobs:
   include:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -89,8 +89,8 @@ jobs:
   exclude:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -103,8 +103,8 @@ jobs:
   exclude-default:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
@@ -116,8 +116,8 @@ jobs:
   exclude-remove:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: ./
+      - uses: actions/checkout@v7.0.1
+      - uses: $/
         id: depup
         with:
           file: testdata/testfile
